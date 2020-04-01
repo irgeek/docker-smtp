@@ -33,6 +33,14 @@ if [ "$DISABLE_IPV6" ]; then
         echo 'disable_ipv6=true' >> /etc/exim4/exim4.conf.localmacros
 fi
 
+if [ -n "$SES_USER_FILE" ]; then
+        SES_USER=$(<$SES_USER_FILE)
+fi
+
+if [ -n "$SES_PASSWORD_FILE" ]; then
+        SES_PASSWORD=$(<$SES_PASSWORD_FILE)
+fi
+
 if [ "$GMAIL_USER" -a "$GMAIL_PASSWORD" ]; then
 	opts+=(
 		dc_eximconfig_configtype 'smarthost'
